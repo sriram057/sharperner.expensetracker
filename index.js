@@ -20,16 +20,34 @@ function savetoLocalStorage(event){
 function showUseronScreen(obj){
     const parentElem = document.getElementById('listofitems')
     const childElem= document.createElement('li')
-    childElem.textContent=obj.amount + ' - ' +obj.info + ' - ' +obj.cate
+    childElem.textContent=obj.amount + ' - ' +obj.info + ' - ' +obj.cate+ ' '
     parentElem.appendChild(childElem)
+
+    const deleteButton = document.createElement('input');
+    deleteButton.type="button"
+    deleteButton.value='Delete'
+    deleteButton.onclick = () => {
+        localStorage.removeItem(obj.cate)
+        parentElem.removeChild(childElem)
+    }
+    childElem.appendChild(deleteButton)
+    parentElem.appendChild(childElem)
+
+    const editButton = document.createElement('input');
+    editButton.type="button"
+    editButton.value='Edit'
+    editButton.onclick = () => {
+        localStorage.removeItem(obj.cate)
+        parentElem.removeChild(childElem)
+        document.getElementById('amount-input').value = obj.amount
+        document.getElementById('expense-name').value = obj.info
+        document.getElementById('category-select').value =obj.cate
+    }
+    childElem.appendChild(deleteButton)
+    childElem.appendChild(editButton)
+    parentElem.appendChild(childElem)
+
 }
-    const categorySelect = document.getElementById('category-select');
-    const amountInput = document.getElementById('amount-input');
-    const expensename = document.getElementById('expense-name');
-    const addBtn = document.getElementById('add-btn');
-
    
-
-
 
 
